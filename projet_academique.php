@@ -13,17 +13,17 @@ try {
                GROUP_CONCAT(DISTINCT cp.competences) as competences,
                GROUP_CONCAT(DISTINCT cl.apprentissage_critique) as critical_learnings,
                GROUP_CONCAT(DISTINCT t.nom_technologie) as technologies
-        FROM Project p
+        FROM project p
         JOIN photos ph ON p.ID_photos = ph.ID_photos
         JOIN categorie_projet c ON p.ID_categorie_projet = c.ID_categorie_projet
         JOIN lien_photos l ON p.ID_lien_photos = l.ID_lien_photos
-        JOIN Annee_project a ON p.ID_Annee_project = a.ID_Annee_project
-        LEFT JOIN Project_Competences pc ON p.ID_project = pc.ID_project
-        LEFT JOIN Competences_project cp ON pc.ID_Competences_project = cp.ID_Competences_project
-        LEFT JOIN Project_Apprentissage_critique pcl ON p.ID_project = pcl.ID_project
-        LEFT JOIN Apprentissage_critique_project cl ON pcl.ID_Apprentissage_critique_project = cl.ID_Apprentissage_critique_project
-        LEFT JOIN Project_Technologies pt ON p.ID_project = pt.ID_project
-        LEFT JOIN Technologies t ON pt.ID_technologies = t.ID_technologies
+        JOIN annee_project a ON p.ID_Annee_project = a.ID_Annee_project
+        LEFT JOIN project_competences pc ON p.ID_project = pc.ID_project
+        LEFT JOIN competences_project cp ON pc.ID_Competences_project = cp.ID_Competences_project
+        LEFT JOIN project_Apprentissage_critique pcl ON p.ID_project = pcl.ID_project
+        LEFT JOIN apprentissage_critique_project cl ON pcl.ID_Apprentissage_critique_project = cl.ID_Apprentissage_critique_project
+        LEFT JOIN project_technologies pt ON p.ID_project = pt.ID_project
+        LEFT JOIN technologies t ON pt.ID_technologies = t.ID_technologies
         WHERE p.ID_project = :id
         GROUP BY p.ID_project
     ";
@@ -40,8 +40,8 @@ try {
     // Requête pour obtenir les AC avec leurs descriptions
     $ac_query = "
         SELECT ac.apprentissage_critique, ac.description_apprentissage_critique
-        FROM Project_Apprentissage_critique pac
-        JOIN Apprentissage_critique_project ac ON pac.ID_Apprentissage_critique_project = ac.ID_Apprentissage_critique_project
+        FROM project_apprentissage_critique pac
+        JOIN apprentissage_critique_project ac ON pac.ID_Apprentissage_critique_project = ac.ID_Apprentissage_critique_project
         WHERE pac.ID_project = :id
     ";
     $ac_stmt = $pdo->prepare($ac_query);

@@ -6,7 +6,7 @@ include 'connection.php';
 try {
     $query = "
         SELECT p.*, ph.chemin_photos, ph.titre_photos, c.categorie_projet, l.lien_photos
-        FROM Project p
+        FROM project p
         JOIN photos ph ON p.ID_photos = ph.ID_photos
         JOIN categorie_projet c ON p.ID_categorie_projet = c.ID_categorie_projet
         JOIN lien_photos l ON p.ID_lien_photos = l.ID_lien_photos

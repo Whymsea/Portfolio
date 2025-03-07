@@ -10,7 +10,7 @@ $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 
 try {
     // Compter le nombre total de projets
-    $count_query = "SELECT COUNT(*) FROM Project WHERE ID_project != 19";
+    $count_query = "SELECT COUNT(*) FROM project WHERE ID_project != 19";
     $total_projects = $pdo->query($count_query)->fetchColumn();
     
     // Calculer le nombre total de pages
@@ -36,7 +36,7 @@ try {
             ph.titre_photos,
             c.categorie_projet,
             l.lien_photos
-        FROM Project p
+        FROM project p
         JOIN photos ph ON p.ID_photos = ph.ID_photos
         JOIN categorie_projet c ON p.ID_categorie_projet = c.ID_categorie_projet
         JOIN lien_photos l ON p.ID_lien_photos = l.ID_lien_photos

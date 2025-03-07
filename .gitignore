@@ -1,6 +1,7 @@
 # Configuration files
 *.ini
 .env
+connection.php
 
 # Dependency directories
 /vendor/
